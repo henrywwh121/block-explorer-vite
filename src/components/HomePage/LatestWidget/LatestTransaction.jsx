@@ -1,8 +1,8 @@
 import { BsBookshelf } from "react-icons/bs";
-
-const currentTime = Math.floor(new Date().getTime() / 1000);
+import { useNavigate } from "react-router-dom";
 
 const LatestTransaction = ({ tran }) => {
+  const navigate = useNavigate();
 
   return (
     <>
@@ -11,7 +11,15 @@ const LatestTransaction = ({ tran }) => {
           <div className="flex flex-row">
             <BsBookshelf className="text-white bg-secondary w-[50px] h-[50px] p-2 rounded-md" />
             <div className="flex flex-col ml-2 cursor-pointer w-24">
-              <div className="text-linkBlue font-bold">{tran.hash.substring(0, 10)}...</div>
+              <div
+                className="text-linkBlue font-bold"
+                onClick={() => {
+                  navigate(`/tx/${tran.hash}`);
+                  navigate(0);
+                }}
+              >
+                {tran.hash.substring(0, 10)}...
+              </div>
               {/* <div className="text-dimWhite">
                 {parseInt(currentTime) - parseInt(blockInfo.timestamp)} secs ago
               </div> */}
@@ -26,7 +34,10 @@ const LatestTransaction = ({ tran }) => {
               </span>
             </div>
             <div className="text-dimWhite">
-              To <span className="text-linkBlue font-bold">{tran.to.substring(0, 10)}...</span>
+              To{" "}
+              <span className="text-linkBlue font-bold">
+                {tran.to.substring(0, 10)}...
+              </span>
             </div>
           </div>
 

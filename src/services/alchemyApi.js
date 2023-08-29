@@ -16,4 +16,9 @@ const getTransactions = async (blockNumber) => {
   return response;
 };
 
-export { getBlockNumber, getBlock, getTransactions };
+const getTransactionReceipt = async (tranno) => {
+  const response = await alchemy.core.getTransactionReceipt(tranno);
+  return response;
+}
+
+export { getBlockNumber, getBlock, getTransactions, getTransactionReceipt };

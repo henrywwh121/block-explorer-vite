@@ -1,9 +1,9 @@
 import { SiEthereum } from "react-icons/si";
 import { BsGlobe2, BsServer, BsClockFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { getPrice } from "../../services/coingekoApi";
+import { getPrice } from "../../../services/coingekoApi";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBlockNumber } from "../../features/block/blockSlice";
+import { fetchBlockNumber } from "../../../features/block/blockSlice";
 
 const BaseInfoDetail = () => {
   const dispatch = useDispatch();

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { BsBox } from "react-icons/bs";
-import { getBlock } from "../../services/alchemyApi";
+import { getBlock } from "../../../services/alchemyApi";
+import { useNavigate } from "react-router-dom";
 
-const currentTime = Math.floor(new Date().getTime() / 1000);
 
 const LatestBlock = ({ blockNumber }) => {
+  const navigate = useNavigate();
   const [blockInfo, setBlockInfo] = useState(null);
-
+  
+  const currentTime = Math.floor(new Date().getTime() / 1000);
+  
   useEffect(() => {
     const BlockInfo = async (blockNumber) => {
       const res = await getBlock(blockNumber);
@@ -22,7 +25,15 @@ const LatestBlock = ({ blockNumber }) => {
           <div className="flex flex-row">
             <BsBox className="text-white bg-secondary w-[50px] h-[50px] p-2 rounded-md" />
             <div className="flex flex-col ml-2 cursor-pointer w-24">
-              <div className="text-linkBlue font-bold">{blockNumber}</div>
+              <div
+                className="text-linkBlue font-bold"
+                onClick={() => {
+                  navigate(`/block/${blockNumber}`);
+                  navigate(0);
+                }}
+              >
+                {blockNumber}
+              </div>
               <div className="text-dimWhite">
                 {parseInt(currentTime) - parseInt(blockInfo.timestamp)} secs ago
               </div>

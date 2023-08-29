@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { getTransactions } from "../../services/alchemyApi";
+import { getTransactions } from "../../../services/alchemyApi";
 import LatestTransaction from "./LatestTransaction";
 
 const LatestTransactions = ({ blockNumber }) => {
@@ -22,9 +21,10 @@ const LatestTransactions = ({ blockNumber }) => {
       <div className="border-t border-[#273343]" />
       <div className="w-full p-4">
         {tranInfo &&
-          trans.map((tran) => (
-            <LatestTransaction tran={tran} />
-          ), [])}
+          trans.map(
+            (tran, index) => <LatestTransaction key={index} tran={tran} />,
+            []
+          )}
       </div>
     </div>
   );
